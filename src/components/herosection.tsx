@@ -1,14 +1,33 @@
+"use client";
+
 import { ArrowRight, MapPin } from "lucide-react"
 import Image from "next/image"
 import { Button } from "./ui/button"
 
 const destinations = [
-  "Ooty", "Munnar", "Kodaikanal", "Wayanad", "Yercaud", "Alleppey",
+"Ooty & Coonoor",
+  "Kodaikanal",
+  "Yercaud",
+  "Munnar",
+  "Wayanad",
+  "Idukki",
+  "Vagamon",
+  "Alleppey",
+  "Kochi",
+  "Thekkady",
+  "Varkala",
+  "Mysur",
+  "Coorg",
+  "Chikmagalur",
+  "Yelagiri",
+  "Rameswaram",
+  "Kanyakumari",
+  "Jaipur"
 ]
 
 const HeroSection = () => {
   return (
-    <div className="flex flex-col md:flex-row px-4 md:px-20 gap-6 items-center justify-center">
+    <div id="home" className="scroll-mt-20 flex flex-col md:flex-row px-4 md:px-20 gap-6 items-center justify-center">
       <div className="relative w-full md:w-5/12 aspect-2/3 rounded-2xl overflow-hidden max-h-[500px] hidden md:flex">
         <Image
           src={"/banner-2.jpg"}
@@ -31,7 +50,7 @@ const HeroSection = () => {
 
         <p className="text-muted-foreground text-base md:text-lg max-w-xl leading-relaxed">
           Explore the best of South India with our exclusive travel memberships.
-          Accommodation, breakfast, sightseeing — all covered. 
+          Accommodation, breakfast, sightseeing — all covered.
           <span className="block text-primary font-sans font-semibold">EMI starting at just ₹2,000.</span>
         </p>
 
@@ -48,11 +67,20 @@ const HeroSection = () => {
         </div>
 
         <div className="flex flex-row gap-3 pt-2">
-          <Button size="lg" className="rounded-full px-6">
+          <Button
+            size="lg"
+            className="rounded-full px-6"
+            onClick={() => document.getElementById('packages')?.scrollIntoView({ behavior: 'smooth' })}
+          >
             Explore Packages
             <ArrowRight className="ml-1 size-4" />
           </Button>
-          <Button size="lg" variant="outline" className="rounded-full px-6">
+          <Button
+            size="lg"
+            variant="outline"
+            className="rounded-full px-6"
+            onClick={() => window.open('https://wa.me/919884161705?text=Hi! I am interested in booking a holiday package.', '_blank')}
+          >
             Book Now
           </Button>
         </div>
