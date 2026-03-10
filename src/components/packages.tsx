@@ -13,12 +13,12 @@ const packages = [
     popular: false,
     highlights: ["3 Days / Year", "5-Year Validity"],
     benefits: [
-      "Accommodation 3 Days per Year",
+      "Accommodation 3 Days for 3 Year",
       "Membership Valid for 5 Years",
       "Daily Breakfast",
       "Sightseeing",
       "Travel Assistant Support",
-      "Special Member Discounts",
+      "Special Member Discounts on future trip",
       "No Service Charges on Hotel Booking",
       "Dedicated Support Team",
     ],
@@ -26,7 +26,7 @@ const packages = [
   {
     name: "Prestige",
     icon: Star,
-    image: "/banner-2.jpg",
+    image: "/ooty.png",
     actualPrice: 30000,
     discountedPrice: 24000,
     emi: null,
@@ -46,7 +46,7 @@ const packages = [
   {
     name: "Imperial",
     icon: Crown,
-    image: "/banner.jpg",
+    image: "/kerala.jpg",
     actualPrice: 70000,
     discountedPrice: 56000,
     emi: 2000,
@@ -70,7 +70,7 @@ function formatPrice(amount: number) {
 
 const Packages = () => {
   return (
-    <section className="px-4 md:px-10 py-12 md:py-20">
+    <section id="packages" className="scroll-mt-20 px-4 md:px-10 py-12 md:py-20">
       <div className="text-center mb-8 md:mb-14">
         <span className="text-xs md:text-sm font-medium tracking-widest uppercase text-primary/70">
           Our Memberships
@@ -89,11 +89,10 @@ const Packages = () => {
           return (
             <div
               key={pkg.name}
-              className={`group relative flex flex-col rounded-2xl border bg-card overflow-hidden transition-all duration-300 hover:shadow-xl ${
-                pkg.popular
-                  ? "border-primary shadow-lg shadow-primary/10 md:scale-[1.03]"
-                  : "border-border hover:border-primary/30"
-              }`}
+              className={`group relative flex flex-col rounded-2xl border bg-card overflow-hidden transition-all duration-300 hover:shadow-xl ${pkg.popular
+                ? "border-primary shadow-lg shadow-primary/10 md:scale-[1.03]"
+                : "border-border hover:border-primary/30"
+                }`}
             >
               {/* Card Image */}
               <div className="relative h-48 sm:h-52 md:h-56 w-full overflow-hidden">
