@@ -1,10 +1,11 @@
-import { Check, Crown, Shield, Star } from "lucide-react"
+import { Check, Crown, MapPin, Shield, Star } from "lucide-react";
 import Image from "next/image"
 import { Button } from "./ui/button"
 
 const packages = [
   {
     name: "Privilege",
+    tag: "South India Essentials",
     icon: Shield,
     image: "/banner.jpg",
     actualPrice: 20000,
@@ -12,26 +13,29 @@ const packages = [
     emi: null,
     popular: false,
     highlights: ["3 Days / Year", "5-Year Validity"],
+    destinations: "Ooty, Kodaikanal, Munnar & more",
     benefits: [
-      "Accommodation 3 Days for 3 Year",
+      "Accommodation 3 Days for 3 Years",
       "Membership Valid for 5 Years",
       "Daily Breakfast",
       "Sightseeing",
       "Travel Assistant Support",
-      "Special Member Discounts on future trip",
+      "Special Member Discounts on Future Trips",
       "No Service Charges on Hotel Booking",
       "Dedicated Support Team",
     ],
   },
   {
     name: "Prestige",
+    tag: "South India Explorer",
     icon: Star,
     image: "/ooty.png",
     actualPrice: 30000,
     discountedPrice: 24000,
     emi: null,
     popular: true,
-    highlights: ["5 Days / Year × 3 Years", "15 Days Total"],
+    highlights: ["5 Days / Year × 3 Years", "5-Year Validity"],
+    destinations: "All Privilege + Coorg, Wayanad, Alleppey & more",
     benefits: [
       "Accommodation 5 Days × 3 Years",
       "Daily Breakfast",
@@ -45,6 +49,7 @@ const packages = [
   },
   {
     name: "Imperial",
+    tag: "All India Premium",
     icon: Crown,
     image: "/kerala.jpg",
     actualPrice: 70000,
@@ -52,17 +57,18 @@ const packages = [
     emi: 2000,
     popular: false,
     highlights: ["6 Days / Year × 3 Years", "5-Year Validity"],
+    destinations: "All Prestige + Goa, Jaipur, Manali, Kashmir & more",
     benefits: [
       "Accommodation 6 Days for 3 Years",
       "Membership Valid for 5 Years",
       "Daily Breakfast",
       "Sightseeing",
       "Travel Assistant Support",
-      "Special Member Discount on Future Trips",
+      "Special Member Discounts on Future Trips",
       "No Service Charges on Hotel Booking",
     ],
   },
-]
+];
 
 function formatPrice(amount: number) {
   return `₹${amount.toLocaleString("en-IN")}`
@@ -70,7 +76,10 @@ function formatPrice(amount: number) {
 
 const Packages = () => {
   return (
-    <section id="packages" className="scroll-mt-20 px-4 md:px-10 py-12 md:py-20">
+    <section
+      id="packages"
+      className="scroll-mt-20 px-4 md:px-10 py-12 md:py-20"
+    >
       <div className="text-center mb-8 md:mb-14">
         <span className="text-xs md:text-sm font-medium tracking-widest uppercase text-primary/70">
           Our Memberships
@@ -79,20 +88,22 @@ const Packages = () => {
           Choose Your Perfect Package
         </h2>
         <p className="text-muted-foreground text-sm md:text-base mt-3 max-w-lg mx-auto">
-          All packages include 20% off. Pick a plan that fits your travel dreams.
+          Pick a plan that fits your travel dreams. All packages include
+          exclusive discounts.
         </p>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 md:gap-7 max-w-6xl mx-auto">
         {packages.map((pkg) => {
-          const Icon = pkg.icon
+          const Icon = pkg.icon;
           return (
             <div
               key={pkg.name}
-              className={`group relative flex flex-col rounded-2xl border bg-card overflow-hidden transition-all duration-300 hover:shadow-xl ${pkg.popular
-                ? "border-primary shadow-lg shadow-primary/10 md:scale-[1.03]"
-                : "border-border hover:border-primary/30"
-                }`}
+              className={`group relative flex flex-col rounded-2xl border bg-card overflow-hidden transition-all duration-300 hover:shadow-xl ${
+                pkg.popular
+                  ? "border-primary shadow-lg shadow-primary/10 md:scale-[1.03]"
+                  : "border-border hover:border-primary/30"
+              }`}
             >
               {/* Card Image */}
               <div className="relative h-48 sm:h-52 md:h-56 w-full overflow-hidden">
@@ -105,13 +116,15 @@ const Packages = () => {
                 <div className="absolute inset-0 bg-linear-to-t from-black/60 via-black/20 to-transparent" />
 
                 {/* Badges on image */}
-                <div className="absolute top-3 left-3 flex gap-2">
+                <div className="absolute top-3 left-3">
                   {pkg.popular && (
                     <span className="bg-primary text-primary-foreground text-[10px] md:text-xs font-semibold px-3 py-1 rounded-full">
                       Most Popular
                     </span>
                   )}
-                  <span className="bg-green-500 text-white text-[10px] md:text-xs font-semibold px-2.5 py-1 rounded-full">
+                </div>
+                <div className="absolute top-3 right-3">
+                  <span className="bg-yellow-400 text-yellow-950 text-[11px] md:text-xs font-extrabold px-3 py-1.5 rounded-full shadow-lg shadow-yellow-400/30 ring-2 ring-yellow-300/50">
                     20% OFF
                   </span>
                 </div>
@@ -121,8 +134,22 @@ const Packages = () => {
                   <div className="rounded-lg bg-white/20 backdrop-blur-sm p-1.5">
                     <Icon className="size-5 md:size-6 text-white" />
                   </div>
-                  <h3 className="text-xl md:text-2xl font-bold text-white">{pkg.name}</h3>
+                  <h3 className="text-xl md:text-2xl font-bold text-white">
+                    {pkg.name}
+                  </h3>
                 </div>
+              </div>
+
+              {/* Scope tag strip */}
+              <div
+                className={`flex items-center gap-2 px-4 py-2.5 text-xs md:text-sm font-bold tracking-wide ${
+                  pkg.popular
+                    ? "bg-primary text-primary-foreground"
+                    : "bg-primary/20 text-foreground"
+                }`}
+              >
+                <MapPin className="size-3.5 shrink-0" />
+                {pkg.tag}
               </div>
 
               {/* Card Body */}
@@ -130,15 +157,15 @@ const Packages = () => {
                 {/* Price */}
                 <div className="flex items-baseline gap-2 mb-1">
                   <span className="text-2xl md:text-3xl font-bold">
-                    {formatPrice(pkg.discountedPrice)}
-                  </span>
-                  <span className="text-muted-foreground text-xs md:text-sm line-through">
                     {formatPrice(pkg.actualPrice)}
                   </span>
                 </div>
                 {pkg.emi && (
                   <p className="text-xs md:text-sm text-muted-foreground mb-1">
-                    EMI from <span className="font-semibold text-primary">{formatPrice(pkg.emi)}/mo</span>
+                    EMI from{" "}
+                    <span className="font-semibold text-primary">
+                      {formatPrice(pkg.emi)}/mo
+                    </span>
                   </p>
                 )}
 
@@ -154,12 +181,22 @@ const Packages = () => {
                   ))}
                 </div>
 
+                {/* Destinations */}
+                <div className="flex items-start gap-2 rounded-lg bg-muted/60 px-3 py-2 mb-3">
+                  <MapPin className="size-3.5 md:size-4 mt-0.5 shrink-0 text-primary" />
+                  <span className="text-xs md:text-sm font-medium text-foreground/80">
+                    {pkg.destinations}
+                  </span>
+                </div>
+
                 {/* Benefits */}
                 <div className="border-t border-border pt-3 mt-auto flex flex-col gap-1.5">
                   {pkg.benefits.map((benefit) => (
                     <div key={benefit} className="flex items-start gap-2">
                       <Check className="size-3.5 md:size-4 mt-0.5 shrink-0 text-green-600 dark:text-green-400" />
-                      <span className="text-xs md:text-sm text-muted-foreground">{benefit}</span>
+                      <span className="text-xs md:text-sm text-muted-foreground">
+                        {benefit}
+                      </span>
                     </div>
                   ))}
                 </div>
@@ -174,11 +211,11 @@ const Packages = () => {
                 </Button>
               </div>
             </div>
-          )
+          );
         })}
       </div>
     </section>
-  )
+  );
 }
 
 export default Packages

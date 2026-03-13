@@ -15,10 +15,13 @@ const Navbar = () => {
           width={75}
           height={75}
           alt="happy-holiday-logo "
+          priority
         />
         <div>
           {" "}
-          <h2 className="font-semibold text-lg md:text-2xl">Happy Holidays</h2>
+          <h2 className="font-semibold text-lg md:text-2xl">
+            Happiee Holidays
+          </h2>
           <p className=" text-xs md:text-sm italic">Mesmerizing memories</p>
         </div>
       </div>

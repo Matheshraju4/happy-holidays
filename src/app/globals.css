@@ -127,3 +127,23 @@
     @apply font-sans;
   }
 }
+
+@layer utilities {
+  .animate-destination-marquee {
+    animation: destination-marquee var(--marquee-duration, 24s) linear infinite;
+  }
+
+  .animate-promo-marquee {
+    animation: destination-marquee 18s linear infinite;
+  }
+}
+
+@keyframes destination-marquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(calc(-50% - (var(--marquee-gap, 0.5rem) / 2)));
+  }
+}
