@@ -1,6 +1,6 @@
 const promoItems = [
   "EMI Available at just ₹2,000/month",
-  "Limited Period Offer — 20% OFF on All Packages",
+  "Limited Period Offer — 20% OFF on All Memberships",
 ];
 
 const PromoBanner = () => {

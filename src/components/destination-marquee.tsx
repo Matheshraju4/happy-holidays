@@ -17,7 +17,7 @@ const speedClasses = {
 } as const;
 
 const pillClassName =
-  "inline-flex shrink-0 items-center gap-1 rounded-full bg-muted px-3 py-1 text-xs font-medium text-muted-foreground";
+  "inline-flex shrink-0 items-center gap-1 rounded-full bg-pink-600 px-3 py-1 text-sm font-medium text-white";
 
 const DestinationMarquee = ({
   destinations,
