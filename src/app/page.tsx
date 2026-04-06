@@ -8,13 +8,16 @@ import Contact from "@/components/contact";
 
 export default function Home() {
   return (
-    <div className="max-w-7xl mx-auto">
+    <main className="w-full">
       <Navbar />
       <PromoBanner />
       <HeroSection />
-      <Packages />
-      <About />
-      <Contact />
-    </div>
+      <div className="max-w-7xl mx-auto px-4">
+        <Packages />
+        <About />
+        <Contact />
+      </div>
+    </main>
   );
 }
+

@@ -1,9 +1,11 @@
 "use client";
 
-import { ArrowRight } from "lucide-react";
+import { useState, useEffect } from "react";
+import { ChevronLeft, ChevronRight, MessageCircle } from "lucide-react";
+
 import Image from "next/image";
-import DestinationMarquee from "./destination-marquee";
 import { Button } from "./ui/button";
+import DestinationMarquee from "./destination-marquee";
 
 const destinations = [
   "Goa",
@@ -33,85 +35,141 @@ const destinations = [
   "Andaman",
 ];
 
+const slides = [
+  {
+    image: "/kerala.jpg",
+    subTitle: "extraordinary",
+    title: "travel, worldclass",
+    description: "The real journey of discovery consists not in seeking new landscapes, but in having new eyes. Discover it with Happy Holidays",
+  },
+  {
+    image: "/hampi.jpg",
+    subTitle: "mesmerizing",
+    title: "Dream Vacations",
+    description: "Explore domestic & international destinations with our exclusive travel memberships. Accommodation, breakfast, sightseeing — all covered.",
+  },
+  {
+    image: "/mysore.png", // Changed from banner-2 to kerala for variety
+    subTitle: "explore",
+    title: "Hidden Gems",
+    description: "Discover the untouched beauty of the world with our curated local experiences. Your journey to extraordinary memories begins here.",
+  },
+  {
+    image: "/kanyakumari.png", // Changed from banner-2 to kerala for variety
+    subTitle: "explore",
+    title: "Hidden Gems",
+    description: "Discover the untouched beauty of the world with our curated local experiences. Your journey to extraordinary memories begins here.",
+  }
+];
+
 const HeroSection = () => {
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % slides.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+  };
+
+  useEffect(() => {
+    const timer = setInterval(nextSlide, 10000);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <div
       id="home"
-      className="scroll-mt-20 flex flex-col md:flex-row px-4 md:px-20 gap-6 items-center justify-center"
+      className="relative w-full h-[80vh] min-h-[450px] overflow-hidden scroll-mt-28"
     >
-      <div className="relative w-full md:w-5/12 aspect-2/3 rounded-2xl overflow-hidden max-h-[500px] hidden md:flex">
-        <Image
-          src={"/banner-2.jpg"}
-          alt="banner"
-          fill
-          className="object-cover object-center"
-        />
-      </div>
 
-      <div className="flex flex-col gap-5 w-full md:w-7/12 py-4">
-        <span className="text-sm font-medium tracking-widest uppercase text-primary/70">
-          Mesmerizing Memories
+
+
+
+      {/* Background Images */}
+      {slides.map((slide, index) => (
+        <div
+          key={index}
+          className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+            index === currentSlide ? "opacity-100 scale-100" : "opacity-0 scale-105"
+          }`}
+        >
+          <Image
+            src={slide.image}
+            alt={slide.title}
+            fill
+            className="object-cover"
+            priority={index === 0}
+          />
+          <div className="absolute inset-0 bg-black/30" /> {/* Dark overlay */}
+        </div>
+      ))}
+
+      {/* Content */}
+      <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4 z-10 transition-all duration-700">
+        <span className="text-yellow-400 font-['Italianno',cursive] text-4xl md:text-5xl lg:text-6xl mb-[-1rem] md:mb-[-1.5rem] drop-shadow-md italic">
+          {slides[currentSlide].subTitle}
         </span>
-
-        <h1 className="text-5xl lg:text-6xl font-bold leading-[1.1] tracking-tight">
-          Start Your <br />
-          <span className="text-primary">Dream Vacation</span> <br />
-          With Us
+        <h1 className="text-white text-5xl md:text-7xl lg:text-8xl font-serif font-bold tracking-tight drop-shadow-lg mb-6 leading-tight">
+          {slides[currentSlide].title}
         </h1>
-
-        <p className="text-muted-foreground text-base md:text-lg max-w-xl leading-relaxed">
-          Explore{" "}
-          <span className="font-semibold text-foreground">domestic</span> &{" "}
-          <span className="font-semibold text-foreground">international</span>{" "}
-          destinations with our exclusive travel memberships.{" "}
-          <span className="text-foreground/80 font-medium">Accommodation</span>,{" "}
-          <span className="text-foreground/80 font-medium">breakfast</span>,{" "}
-          <span className="text-foreground/80 font-medium">sightseeing</span> — all covered.
-          <span className="mt-1 inline-flex items-center gap-1.5 rounded-full bg-primary/10 px-3 py-1 text-sm font-semibold text-primary">
-            EMI starting at just ₹2,000
-          </span>
+        <p className="text-white/90 text-sm md:text-lg max-w-2xl mx-auto font-medium drop-shadow-md leading-relaxed text-center px-4 mb-4">
+          {slides[currentSlide].description}
         </p>
 
-        <DestinationMarquee destinations={destinations} className="max-w-xl" />
 
-        <div className="flex flex-row gap-3 pt-2">
-          <Button
-            size="lg"
-            className="rounded-full px-6"
-            onClick={() =>
-              document
-                .getElementById("packages")
-                ?.scrollIntoView({ behavior: "smooth" })
-            }
-          >
-            Explore Packages
-            <ArrowRight className="ml-1 size-4" />
-          </Button>
-          <Button
-            size="lg"
-            variant="outline"
-            className="rounded-full px-6"
-            onClick={() =>
-              window.open(
-                "https://wa.me/919884161705?text=Hi! I am interested in booking a holiday package.",
-                "_blank",
-              )
-            }
-          >
-            Book Now
-          </Button>
+        <div className="w-full max-w-xl mx-auto px-4 opacity-80 hover:opacity-100 transition-opacity">
+          <DestinationMarquee destinations={destinations} speed="normal" />
         </div>
       </div>
-      <div className="relative w-full  aspect-video rounded-2xl overflow-hidden max-h-[500px] flex md:hidden">
-        <Image
-          src={"/banner-2.jpg"}
-          alt="banner"
-          fill
-          className="object-cover object-center"
-        />
+
+
+      {/* Navigation Arrows */}
+      <button
+        onClick={prevSlide}
+        className="absolute left-4 top-1/2 -translate-y-1/2 p-4 bg-black/20 hover:bg-black/40 text-white rounded-md transition-all z-20 group"
+        aria-label="Previous slide"
+      >
+        <ChevronLeft className="size-8 md:size-10 stroke-[1.5px] transition-transform group-hover:-translate-x-1" />
+      </button>
+      <button
+        onClick={nextSlide}
+        className="absolute right-4 top-1/2 -translate-y-1/2 p-4 bg-black/20 hover:bg-black/40 text-white rounded-md transition-all z-20 group"
+        aria-label="Next slide"
+      >
+        <ChevronRight className="size-8 md:size-10 stroke-[1.5px] transition-transform group-hover:translate-x-1" />
+      </button>
+
+      {/* WhatsApp Button */}
+      <div className="absolute bottom-10 left-10 z-20">
+        <a
+          href="https://wa.me/919884161705"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-2xl flex items-center justify-center transition-transform hover:scale-110"
+        >
+          <MessageCircle className="size-5" />
+        </a>
       </div>
+
+
+      {/* Enquire Now Button */}
+      <div className="absolute bottom-10 right-10 z-20">
+        <Button
+          size="lg"
+          className="rounded-full px-10 py-7 text-lg font-bold bg-[#FFD700] hover:bg-[#FFC000] text-black shadow-xl transition-all hover:scale-105 active:scale-95"
+          onClick={() =>
+            document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })
+          }
+        >
+          Enquire Now
+        </Button>
+      </div>
+
     </div>
   );
 };
 
 export default HeroSection;
+
