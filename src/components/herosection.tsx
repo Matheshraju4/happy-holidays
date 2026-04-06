@@ -40,7 +40,7 @@ const slides = [
     image: "/kerala.jpg",
     subTitle: "extraordinary",
     title: "travel, worldclass",
-    description: "The real journey of discovery consists not in seeking new landscapes, but in having new eyes. Discover it with Happy Holidays",
+    description: "The real journey of discovery consists not in seeking new landscapes, but in having new eyes. Discover it with Happiee Holidays",
   },
   {
     image: "/hampi.jpg",
@@ -107,58 +107,55 @@ const HeroSection = () => {
       ))}
 
       {/* Content */}
-      <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4 z-10 transition-all duration-700">
-        <span className="text-yellow-400 font-['Italianno',cursive] text-4xl md:text-5xl lg:text-6xl mb-[-1rem] md:mb-[-1.5rem] drop-shadow-md italic">
+      <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6 z-10 transition-all duration-700">
+        <span className="text-yellow-400 font-['Italianno',cursive] text-3xl md:text-5xl lg:text-6xl mb-[-0.5rem] md:mb-[-1.5rem] drop-shadow-md italic">
           {slides[currentSlide].subTitle}
         </span>
-        <h1 className="text-white text-5xl md:text-7xl lg:text-8xl font-serif font-bold tracking-tight drop-shadow-lg mb-6 leading-tight">
+        <h1 className="text-white text-4xl md:text-7xl lg:text-8xl font-serif font-bold tracking-tight drop-shadow-lg mb-4 md:mb-6 leading-tight">
           {slides[currentSlide].title}
         </h1>
-        <p className="text-white/90 text-sm md:text-lg max-w-2xl mx-auto font-medium drop-shadow-md leading-relaxed text-center px-4 mb-4">
+        <p className="text-white/90 text-xs md:text-lg max-w-2xl mx-auto font-medium drop-shadow-md leading-relaxed text-center px-4 mb-6 md:mb-4">
           {slides[currentSlide].description}
         </p>
 
-
-        <div className="w-full max-w-xl mx-auto px-4 opacity-80 hover:opacity-100 transition-opacity">
+        <div className="w-full max-w-xs md:max-w-xl mx-auto px-4 opacity-80 hover:opacity-100 transition-opacity">
           <DestinationMarquee destinations={destinations} speed="normal" />
         </div>
       </div>
 
-
       {/* Navigation Arrows */}
       <button
         onClick={prevSlide}
-        className="absolute left-4 top-1/2 -translate-y-1/2 p-4 bg-black/20 hover:bg-black/40 text-white rounded-md transition-all z-20 group"
+        className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 p-2 md:p-4 bg-black/20 hover:bg-black/40 text-white rounded-lg transition-all z-20 group"
         aria-label="Previous slide"
       >
-        <ChevronLeft className="size-8 md:size-10 stroke-[1.5px] transition-transform group-hover:-translate-x-1" />
+        <ChevronLeft className="size-5 md:size-10 stroke-[1.5px] transition-transform group-hover:-translate-x-1" />
       </button>
       <button
         onClick={nextSlide}
-        className="absolute right-4 top-1/2 -translate-y-1/2 p-4 bg-black/20 hover:bg-black/40 text-white rounded-md transition-all z-20 group"
+        className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 p-2 md:p-4 bg-black/20 hover:bg-black/40 text-white rounded-lg transition-all z-20 group"
         aria-label="Next slide"
       >
-        <ChevronRight className="size-8 md:size-10 stroke-[1.5px] transition-transform group-hover:translate-x-1" />
+        <ChevronRight className="size-5 md:size-10 stroke-[1.5px] transition-transform group-hover:translate-x-1" />
       </button>
 
+
       {/* WhatsApp Button */}
-      <div className="absolute bottom-10 left-10 z-20">
+      <div className="absolute bottom-6 left-6 md:bottom-10 md:left-10 z-20">
         <a
           href="https://wa.me/919884161705"
           target="_blank"
           rel="noopener noreferrer"
-          className="bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-2xl flex items-center justify-center transition-transform hover:scale-110"
+          className="bg-green-500 hover:bg-green-600 text-white p-3 md:p-4 rounded-full shadow-2xl flex items-center justify-center transition-transform hover:scale-110"
         >
-          <MessageCircle className="size-5" />
+          <MessageCircle className="size-5 md:size-6" />
         </a>
       </div>
 
-
       {/* Enquire Now Button */}
-      <div className="absolute bottom-10 right-10 z-20">
+      <div className="absolute bottom-6 right-6 md:bottom-10 md:right-10 z-20">
         <Button
-          size="lg"
-          className="rounded-full px-10 py-7 text-lg font-bold bg-[#FFD700] hover:bg-[#FFC000] text-black shadow-xl transition-all hover:scale-105 active:scale-95"
+          className="rounded-full px-6 py-5 md:px-10 md:py-7 text-sm md:text-lg font-bold bg-[#FFD700] hover:bg-[#FFC000] text-black shadow-xl transition-all hover:scale-105 active:scale-95"
           onClick={() =>
             document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })
           }
@@ -166,6 +163,7 @@ const HeroSection = () => {
           Enquire Now
         </Button>
       </div>
+
 
     </div>
   );
