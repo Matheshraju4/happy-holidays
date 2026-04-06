@@ -136,6 +136,17 @@
   .animate-promo-marquee {
     animation: destination-marquee 18s linear infinite;
   }
+
+  .no-scrollbar::-webkit-scrollbar,
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .no-scrollbar,
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
 }
 
 @keyframes destination-marquee {
